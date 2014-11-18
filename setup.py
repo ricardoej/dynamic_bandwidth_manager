@@ -5,7 +5,7 @@ from catkin_pkg.python_setup import generate_distutils_setup
 
 # fetch values from package.xml
 setup_args = generate_distutils_setup(
-    packages=['dynamic_topic_rate'],
+    packages=['dynamic_bandwidth_manager'],
     package_dir={'': 'src'},
 )
 

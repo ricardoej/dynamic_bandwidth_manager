@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>dynamic_topic_rate</name>
+  <name>dynamic_bandwidth_manager</name>
   <version>0.0.0</version>
-  <description>The dynamic_topic_rate package</description>
+  <description>The dynamic_bandwidth_manager package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->

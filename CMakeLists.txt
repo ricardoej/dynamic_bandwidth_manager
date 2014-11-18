@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(dynamic_topic_rate)
+project(dynamic_bandwidth_manager)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -81,7 +81,7 @@ catkin_python_setup()
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES dynamic_topic_rate
+#  LIBRARIES dynamic_bandwidth_manager
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
 )
@@ -98,19 +98,19 @@ include_directories(
 )
 
 ## Declare a cpp library
-# add_library(dynamic_topic_rate
-#   src/${PROJECT_NAME}/dynamic_topic_rate.cpp
+# add_library(dynamic_bandwidth_manager
+#   src/${PROJECT_NAME}/dynamic_bandwidth_manager.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(dynamic_topic_rate_node src/dynamic_topic_rate_node.cpp)
+# add_executable(dynamic_bandwidth_manager_node src/dynamic_bandwidth_manager_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(dynamic_topic_rate_node dynamic_topic_rate_generate_messages_cpp)
+# add_dependencies(dynamic_bandwidth_manager_node dynamic_bandwidth_manager_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(dynamic_topic_rate_node
+# target_link_libraries(dynamic_bandwidth_manager_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -129,7 +129,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS dynamic_topic_rate dynamic_topic_rate_node
+# install(TARGETS dynamic_bandwidth_manager dynamic_bandwidth_manager_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -154,7 +154,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_dynamic_topic_rate.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_dynamic_bandwidth_manager.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
