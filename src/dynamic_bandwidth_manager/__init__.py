@@ -1,4 +1,5 @@
 from .dbm_rate import DBMRate
 from .dbm_publisher import DBMPublisher
+from .dbm_subscriber import DBMSubscriber
 from .dbm_param import DBMParam
 from .dbm_optimizer import DBMOptimizer

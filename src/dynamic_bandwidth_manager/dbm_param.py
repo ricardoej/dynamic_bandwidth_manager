@@ -9,6 +9,7 @@ class DBMParam:
 		DBMParam.__add_max_frequency(topic_name, max_frequency)
 		DBMParam.__add_priority(topic_name)
 		DBMParam.__add_message_size(topic_name)
+		DBMParam.__add_equality_message_optimization_is_enabled(topic_name)
 		DBMParam.__add_max_bandwidth()
 		DBMParam.__add_max_bandwidth_utilization()
 		DBMParam.__add_optimization_rate()
@@ -77,12 +78,26 @@ class DBMParam:
 			rospy.set_param(param_name, False)
 
 	@staticmethod
+	def __add_equality_message_optimization_is_enabled(topic_name):
+		param_name = topic_name + "/dbm/equality_message_optimization_is_enabled"
+		if not rospy.has_param(param_name):
+			rospy.set_param(param_name, True)
+
+	@staticmethod
 	def get_current_frequency(topic_name):
 		param_name = topic_name + "/dbm/frequency/current_value"
 		if rospy.has_param(param_name):
 			return rospy.get_param(param_name)
 		else:
 			return 0
+
+	@staticmethod
+	def get_equality_message_optimization_is_enabled(topic_name):
+		param_name = topic_name + "/dbm/equality_message_optimization_is_enabled"
+		if rospy.has_param(param_name):
+			return rospy.get_param(param_name)
+		else:
+			return True
 
 	@staticmethod
 	def set_current_frequency(topic_name, frequency):
