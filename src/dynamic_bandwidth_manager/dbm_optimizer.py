@@ -15,7 +15,6 @@ class DBMOptimizer:
 			self.__verify_if_topics_should_be_managed(managed_topics)
 			managed_topics = [topic for topic, isManaged in managed_topics.iteritems() if isManaged == 1]
 			frequencies = self.__get_new_frequencies_method(managed_topics)
-			rospy.loginfo("Frequencies: %s", frequencies)
 			for key in frequencies:
 				DBMParam.set_current_frequency(key, frequencies[key])
 			self.__loop_rate.sleep()
