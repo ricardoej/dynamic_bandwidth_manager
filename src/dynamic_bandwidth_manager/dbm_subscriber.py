@@ -3,13 +3,5 @@ import sys
 
 class DBMSubscriber(rospy.Subscriber):
 	def __init__(self, name, data_class, callback=None, callback_args=None, queue_size=None, buff_size=65536, tcp_nodelay=False):
-		rospy.Subscriber.__init__(self, name, data_class, callback, callback_args, queue_size, buff_size, tcp_nodelay)
-
-		def decorate_method(method):
-			def wrapper(msg, cb, cb_args):
-				return method(msg, cb, cb_args)
-
-			return wrapper
-
-		new_function = decorate_method(self.impl._invoke_callback)
-		setattr(self.impl, '_invoke_callback', new_function)
+		self.managed_topic_name = name + "/optimized"
+		rospy.Subscriber.__init__(self, self.managed_topic_name, data_class, callback, callback_args, queue_size, buff_size, tcp_nodelay)
