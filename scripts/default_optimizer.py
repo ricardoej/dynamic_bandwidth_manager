@@ -5,7 +5,7 @@ import dynamic_bandwidth_manager
 import pulp
 import numpy as np
 
-def optimize(managed_topics):
+def optimize(managed_topics, priorities):
     # Initialize the model
     model = pulp.LpProblem("Dynamic Bandwidth Optmization for Multirobot Systems", pulp.LpMaximize)
 
@@ -31,7 +31,7 @@ def optimize(managed_topics):
     # The frequency should be higher than minimum frequency
     # Calculating the minimum frequency in relation to the priority
     fmin = dict(zip(managed_topics,
-                (((dynamic_bandwidth_manager.DBMParam.get_max_frequency(topic) - dynamic_bandwidth_manager.DBMParam.get_min_frequency(topic)) * dynamic_bandwidth_manager.DBMParam.get_priority(topic) + dynamic_bandwidth_manager.DBMParam.get_min_frequency(topic))
+                (((dynamic_bandwidth_manager.DBMParam.get_max_frequency(topic) - dynamic_bandwidth_manager.DBMParam.get_min_frequency(topic)) * priorities[topic] + dynamic_bandwidth_manager.DBMParam.get_min_frequency(topic))
                 for topic in managed_topics)))
 
     for topic in managed_topics:

@@ -8,6 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  cv_bridge
+  image_transport
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,6 +106,7 @@ include_directories(
 
 ## Declare a cpp executable
 # add_executable(dynamic_bandwidth_manager_node src/dynamic_bandwidth_manager_node.cpp)
+add_executable(image_publisher_node example/image_publisher.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -113,6 +116,9 @@ include_directories(
 # target_link_libraries(dynamic_bandwidth_manager_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(image_publisher_node
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##

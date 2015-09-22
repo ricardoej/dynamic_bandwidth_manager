@@ -14,7 +14,8 @@ class DBMOptimizer:
 			managed_topics = rospy.get_param('dbm/topics', {})
 			self.__verify_if_topics_should_be_managed(managed_topics)
 			managed_topics = [topic for topic, isManaged in managed_topics.iteritems() if isManaged == 1]
-			frequencies = self.__get_new_frequencies_method(managed_topics)
+			priorities = self.__normalize_priorities(managed_topics)
+			frequencies = self.__get_new_frequencies_method(managed_topics, priorities)
 			for key in frequencies:
 				DBMParam.set_current_frequency(key, frequencies[key])
 			self.__loop_rate.sleep()
@@ -70,4 +71,11 @@ class DBMOptimizer:
 			for subscriber in subs:
 				if self.__get_node_location(publisher) != self.__get_node_location(subscriber):
 					return False
-		return True 
+		return True
+
+	def __normalize_priorities(self, managed_topics):
+		priorities = {}
+		prioritiessum = sum(dynamic_bandwidth_manager.DBMParam.get_priority(topic) * dynamic_bandwidth_manager.DBMParam.get_message_size_in_bytes(topic) for topic in managed_topics)
+		for topic in managed_topics:
+			priorities[topic] = (dynamic_bandwidth_manager.DBMParam.get_priority(topic) * dynamic_bandwidth_manager.DBMParam.get_message_size_in_bytes(topic)) / prioritiessum
+		return priorities

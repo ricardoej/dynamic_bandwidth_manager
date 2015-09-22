@@ -138,7 +138,7 @@ last_message = None
 
 def callback(data):
     global last_message
-    last_message = data.data
+    last_message = data
 
 def get_message():
     global last_message
