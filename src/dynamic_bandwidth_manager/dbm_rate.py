@@ -2,11 +2,11 @@ import rospy
 from .dbm_param import DBMParam
 
 class DBMRate(rospy.Rate):
-	def __init__(self, publisher, min_frequency, max_frequency, default_frequency = None):
+	def __init__(self, topic_name, min_frequency, max_frequency, default_frequency = None):
 		if default_frequency is None:
 			default_frequency = max_frequency
 
-		self.topic_name = publisher.name
+		self.topic_name = topic_name
 		self.default_frequency = default_frequency
 		DBMParam.create_params(self.topic_name, min_frequency, max_frequency, default_frequency)
 		rospy.Rate.__init__(self, default_frequency)
