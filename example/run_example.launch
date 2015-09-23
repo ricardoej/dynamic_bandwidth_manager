@@ -1,0 +1,28 @@
+<launch>
+  <!-- local machine already has a definition by default.
+       This tag overrides the default definition with
+       specific ROS_ROOT and ROS_PACKAGE_PATH values -->
+  <machine name="local_alt" address="localhost" default="true" ros-root="/u/user/ros/ros/" ros-package-path="/u/user/ros/ros-pkg" />
+  <!-- a basic listener node -->
+  <node name="listener-1" pkg="rospy_tutorials" type="listener" />
+  <!-- pass args to the listener node -->
+  <node name="listener-2" pkg="rospy_tutorials" type="listener" args="-foo arg2" />
+  <!-- a respawn-able listener node -->
+  <node name="listener-3" pkg="rospy_tutorials" type="listener" respawn="true" />
+  <!-- start listener node in the 'wg1' namespace -->
+  <node ns="wg1" name="listener-wg1" pkg="rospy_tutorials" type="listener" respawn="true" />
+  <!-- start a group of nodes in the 'wg2' namespace -->
+  <group ns="wg2">
+    <!-- remap applies to all future statements in this scope. -->
+    <remap from="chatter" to="hello"/>
+    <node pkg="rospy_tutorials" type="listener" name="listener" args="--test" respawn="true" />
+    <node pkg="rospy_tutorials" type="talker" name="talker">
+      <!-- set a private parameter for the node -->
+      <param name="talker_1_param" value="a value" />
+      <!-- nodes can have their own remap args -->
+      <remap from="chatter" to="hello-1"/>
+      <!-- you can set environment variables for a node -->
+      <env name="ENV_EXAMPLE" value="some value" />
+    </node>
+  </group>
+</launch>

@@ -1,5 +1,6 @@
 import rospy
 import rosgraph
+import dynamic_bandwidth_manager
 from urlparse import urlparse
 from .dbm_param import DBMParam
 
@@ -77,5 +78,8 @@ class DBMOptimizer:
 		priorities = {}
 		prioritiessum = sum(dynamic_bandwidth_manager.DBMParam.get_priority(topic) * dynamic_bandwidth_manager.DBMParam.get_message_size_in_bytes(topic) for topic in managed_topics)
 		for topic in managed_topics:
-			priorities[topic] = (dynamic_bandwidth_manager.DBMParam.get_priority(topic) * dynamic_bandwidth_manager.DBMParam.get_message_size_in_bytes(topic)) / prioritiessum
+			if not prioritiessum == 0:
+				priorities[topic] = (dynamic_bandwidth_manager.DBMParam.get_priority(topic) * dynamic_bandwidth_manager.DBMParam.get_message_size_in_bytes(topic)) / prioritiessum
+			else:
+				priorities[topic] = dynamic_bandwidth_manager.DBMParam.get_priority(topic)
 		return priorities
