@@ -143,14 +143,14 @@ def callback(data):
 def get_message():
     global last_message
     message = last_message
-    last_message = None
+    #last_message = None
     return message
 
 def start():
-    rospy.init_node('publisher', anonymous=True)
-    msg_class, real_topic, _ = get_topic_class(rospy.get_param('~topic'), blocking=True) #pause hz until topic is published
+    rospy.init_node('dbm_bridge_node', anonymous=True)
+    msg_class, real_topic, _ = get_topic_class(rospy.get_param('~topic_name'), blocking=True) #pause hz until topic is published
     pub = dynamic_bandwidth_manager.pub = dynamic_bandwidth_manager.DBMPublisher(
-        real_topic, msg_class, rospy.get_param('~minfrequency'), rospy.get_param('~maxfrequency'))
+        real_topic, msg_class, rospy.get_param('~min_frequency'), rospy.get_param('~max_frequency'))
     rospy.Subscriber(real_topic, msg_class, callback)
     pub.start(get_message, full_rate=False)
     rospy.spin()
