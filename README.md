@@ -1,7 +1,7 @@
 dynamic_bandwidth_manager
 ======
 
-Communication is an important component in robotic systems. The appli-cation goals such as, finding a victim or teleoperate a robot in an obstacle avoid-ing application, may get affected if there are problems in communication between system agents. The developed package, dynamic_bandwidth_manager (DBM), was designed to maximize bandwidth usage in multi-robot systems. DBM controls the rate that a node publishes a topic, managing different channels where commands, sensory data and video frames are exchanged.
+Communication is an important component in robotic systems. The application goals such as, finding a victim or teleoperate a robot in an obstacle avoiding application, may get affected if there are problems in communication between system agents. The developed package, dynamic_bandwidth_manager (DBM), was designed to maximize bandwidth usage in multi-robot systems. DBM controls the rate that a node publishes a topic, managing different channels where commands, sensory data and video frames are exchanged.
 
 For more informations about this project:
 
